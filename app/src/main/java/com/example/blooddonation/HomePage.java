@@ -29,7 +29,6 @@ public class HomePage extends AppCompatActivity {
     FusedLocationProviderClient locationProviderClient;
     LocationManager manager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +40,6 @@ public class HomePage extends AppCompatActivity {
         if(!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
             requestGPS();
         }
-       
     }
 
     private void requestGPS() {

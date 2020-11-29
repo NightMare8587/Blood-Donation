@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 public class BloodDonors extends AppCompatActivity {
     FusedLocationProviderClient client;
+    String longitude,latitude;
     @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,10 @@ public class BloodDonors extends AppCompatActivity {
             @Override
             public void onSuccess(Location location) {
                 if(location != null){
-                    Toast.makeText(BloodDonors.this, String.valueOf(location.getLatitude()), Toast.LENGTH_SHORT).show();
+                    longitude = String.valueOf(location.getLongitude());
+                    latitude = String.valueOf(location.getLatitude());
+                }else{
+                    Toast.makeText(BloodDonors.this, "Restart Application and Turn on GPS", Toast.LENGTH_SHORT).show();
                 }
             }
         });

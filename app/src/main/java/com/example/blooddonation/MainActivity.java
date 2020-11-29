@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,15 +26,32 @@ public class MainActivity extends AppCompatActivity {
     Button login,forgotPass,createNewAccount;
     FirebaseAuth loginAuth;
     FirebaseUser loginUser;
+    String Email,Pass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initialise();
+        if(loginUser != null){
+            startActivity(new Intent(getApplicationContext(),HomePage.class));
+            finish();
+        }
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(emailLogin.length() == 0){
+                    emailLogin.requestFocus();
+                    emailLogin.setError("Field can't be Empty");
+                    return;
+                }else if(passwordLogin.length() == 0){
+                    passwordLogin.requestFocus();
+                    passwordLogin.setError("Field can't be Empty");
+                    return;
+                }
+                Email = emailLogin.getText().toString();
+                Pass = passwordLogin.getText().toString();
 
+                startLoginProcedure(Email,Pass);
             }
         });
 
@@ -51,6 +69,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void startLoginProcedure(String email, String pass) {
+        loginAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                 if(task.isSuccessful()){
+                     Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                     startActivity(new Intent(getApplicationContext(),HomePage.class));
+                     finish();
+                 }else {
+                     Toast.makeText(MainActivity.this, "Something went Wrong", Toast.LENGTH_SHORT).show();
+                     return;
+                 }
+            }
+        });
     }
 
     private void startPasswordReset() {

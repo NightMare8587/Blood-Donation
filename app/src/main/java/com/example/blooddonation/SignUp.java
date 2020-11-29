@@ -81,6 +81,7 @@ public class SignUp extends AppCompatActivity {
                     signUpUser = FirebaseAuth.getInstance().getCurrentUser();
                     signUpRef.child("Users").child(signUpUser.getUid()).setValue(user);
                     startActivity(new Intent(getApplicationContext(),HomePage.class));
+                    finish();
                 }
             }
         });

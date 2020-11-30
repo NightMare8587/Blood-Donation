@@ -19,6 +19,20 @@ import java.util.ArrayList;
 
 public class DonorList extends RecyclerView.Adapter<DonorList.DonorViewHolder> {
 
+    ArrayList<String> names = new ArrayList<>();
+    ArrayList<String> age = new ArrayList<>();
+    ArrayList<String> sex = new ArrayList<>();
+
+    ArrayList<String> addres = new ArrayList<>();
+    ArrayList<String> blood = new ArrayList<>();
+    public DonorList(ArrayList<String> names, ArrayList<String> age, ArrayList<String> sex, ArrayList<String> addres, ArrayList<String> blood) {
+        this.addres = addres;
+        this.names = names;
+        this.sex = sex;
+        this.blood = blood;
+        this.age = age;
+    }
+
     @NonNull
     @Override
     public DonorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,19 +43,29 @@ public class DonorList extends RecyclerView.Adapter<DonorList.DonorViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull DonorViewHolder holder, int position) {
-
+        holder.bloodType.setText(blood.get(position));
+        holder.sex.setText(sex.get(position));
+        holder.age.setText(age.get(position));
+        holder.address.setText(addres.get(position));
+        holder.name.setText(names.get(position));
     }
 
 
     @Override
     public int getItemCount() {
-        return 8;
+        return names.size();
     }
 
-    public class DonorViewHolder extends RecyclerView.ViewHolder{
+    public static class DonorViewHolder extends RecyclerView.ViewHolder{
 
+        TextView age,sex,name,address,bloodType;
         public DonorViewHolder(@NonNull View itemView) {
             super(itemView);
+            age = (TextView)itemView.findViewById(R.id.donorAge);
+            sex = (TextView)itemView.findViewById(R.id.donorSex);
+            name= (TextView)itemView.findViewById(R.id.donorName);
+            address = (TextView)itemView.findViewById(R.id.donorAddress);
+            bloodType = (TextView)itemView.findViewById(R.id.donorBlood);
         }
     }
 }

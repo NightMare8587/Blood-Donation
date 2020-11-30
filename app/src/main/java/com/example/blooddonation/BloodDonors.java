@@ -33,14 +33,18 @@ public class BloodDonors extends AppCompatActivity {
     FirebaseAuth findAuth;
     DatabaseReference findRef;
     RecyclerView recyclerView;
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<String> names = new ArrayList<>();
+    ArrayList<String> age = new ArrayList<>();
+    ArrayList<String> sex = new ArrayList<>();
+
+    ArrayList<String> addres = new ArrayList<>();
+    ArrayList<String> blood = new ArrayList<>();
     @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blood_donors);
         initialise();
-        list.clear();
         client = LocationServices.getFusedLocationProviderClient(this);
         client.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override
@@ -58,23 +62,24 @@ public class BloodDonors extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot post : snapshot.getChildren()){
+
                     double longi = Double.parseDouble(post.child("Longitude").getValue().toString());
                     double lati = Double.parseDouble(post.child("Latitude").getValue().toString());
                     if (distance(latitude, longitude, lati, longi) < 0.5) { // if distance < 0.1 miles we take locations as equal
-                       list.add(post.getKey());
-                        list.add(post.getKey());
+                        names.add(post.child("Name").getValue().toString());
+                        age.add(post.child("Age").getValue().toString());
+                        sex.add(post.child("Sex").getValue().toString());
+                        addres.add(post.child("Address").getValue().toString());
+                        blood.add(post.child("BloodType").getValue().toString());
+                        recyclerView.setAdapter(new DonorList(names,age,sex,addres,blood));
                     }
                 }
-              
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-
 
     }
 

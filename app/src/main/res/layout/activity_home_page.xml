@@ -4,4 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePage"/>
+    android:background="#BDBCBC"
+    tools:context=".HomePage" >
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/homeToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:title="Home"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/findBloddDonors"
+        android:layout_width="238dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="82dp"
+        android:backgroundTint="#E85E5E"
+        android:padding="5dp"
+        android:text="FIND BLOOD\nDONORS"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeToolBar" />
+
+    <Button
+        android:id="@+id/donateBlood"
+        android:layout_width="228dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#E85E5E"
+        android:text="DONATE BLOOD"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/findBloddDonors" />
+</androidx.constraintlayout.widget.ConstraintLayout>

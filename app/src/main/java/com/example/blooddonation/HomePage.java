@@ -28,11 +28,14 @@ import com.google.android.gms.tasks.Task;
 public class HomePage extends AppCompatActivity {
     FusedLocationProviderClient locationProviderClient;
     LocationManager manager;
+    Button findDonors,DonateBlood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        findDonors = (Button)findViewById(R.id.findBloddDonors);
+        DonateBlood = (Button)findViewById(R.id.donateBlood);
         manager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(HomePage.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
@@ -40,6 +43,14 @@ public class HomePage extends AppCompatActivity {
         if(!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
             requestGPS();
         }
+
+        findDonors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomePage.this, "Hello", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void requestGPS() {

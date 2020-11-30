@@ -34,7 +34,7 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        findDonors = (Button)findViewById(R.id.findBloddDonors);
+        findDonors = (Button)findViewById(R.id.findBloodDonors);
         DonateBlood = (Button)findViewById(R.id.donateBlood);
         manager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
@@ -47,7 +47,13 @@ public class HomePage extends AppCompatActivity {
         findDonors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(HomePage.this, "Hello", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),BloodDonors.class));
+            }
+        });
+        DonateBlood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), com.example.blooddonation.DonateBlood.class));
             }
         });
 
@@ -66,7 +72,7 @@ public class HomePage extends AppCompatActivity {
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                System.exit(0);
             }
         }).create();
 

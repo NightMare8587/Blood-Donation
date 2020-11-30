@@ -21,12 +21,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/findBloddDonors"
-        android:layout_width="238dp"
-        android:layout_height="92dp"
-        android:layout_marginTop="82dp"
-        android:backgroundTint="#E85E5E"
-        android:padding="5dp"
+        android:id="@+id/findBloodDonors"
+        android:layout_width="236dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="105dp"
+        android:backgroundTint="#F68C8C"
+        android:padding="10dp"
         android:text="FIND BLOOD\nDONORS"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -36,14 +36,16 @@
 
     <Button
         android:id="@+id/donateBlood"
-        android:layout_width="228dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#E85E5E"
+        android:layout_width="232dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="55dp"
+        android:backgroundTint="#F68C8C"
+        android:padding="10dp"
         android:text="DONATE BLOOD"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/findBloddDonors" />
+        app:layout_constraintTop_toBottomOf="@+id/findBloodDonors" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,6 +31,7 @@ public class DonateBlood extends AppCompatActivity {
     RadioButton uploadMale,uploadFemale,uploadOthers;
     RadioButton selectedButton;
     Button uploadData;
+    EditText uploadNumber;
     @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,10 @@ public class DonateBlood extends AppCompatActivity {
                     uploadBloodType.requestFocus();
                     uploadBloodType.setError("Field can't be Empty");
                     return;
+                }else if(uploadNumber.length()<=9){
+                    uploadNumber.requestFocus();
+                    uploadNumber.setError("Enter valid number");
+                    return;
                 }
 
                 int id = uploadGroup.getCheckedRadioButtonId();
@@ -79,14 +84,14 @@ public class DonateBlood extends AppCompatActivity {
                 ,uploadAddress.getText().toString()
                 ,uploadAge.getText().toString()
                 ,uploadBloodType.getText().toString()
-                ,sex);
+                ,sex,uploadNumber.getText().toString());
 
             }
         });
     }
 
-    private void startUploadingData(String name, String address, String age, String bloodType, String sex) {
-        donorUpload upload = new donorUpload(name,address,sex,bloodType,age,longitude,latitude);
+    private void startUploadingData(String name, String address, String age, String bloodType, String sex,String number) {
+        donorUpload upload = new donorUpload(name,address,sex,bloodType,age,longitude,latitude,number);
         uploadRef.child("Blood Donors").child(uploadUser.getUid()).setValue(upload);
         Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
     }
@@ -104,5 +109,6 @@ public class DonateBlood extends AppCompatActivity {
         uploadOthers = (RadioButton)findViewById(R.id.uploadOthers);
         uploadAddress = (EditText)findViewById(R.id.uploadAddress);
         uploadBloodType = (EditText)findViewById(R.id.uploadBloodType);
+        uploadNumber = (EditText)findViewById(R.id.uploadPhone);
     }
 }

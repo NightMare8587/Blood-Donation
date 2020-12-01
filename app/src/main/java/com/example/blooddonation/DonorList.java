@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DonorList extends RecyclerView.Adapter<DonorList.DonorViewHolder> {
@@ -25,12 +26,14 @@ public class DonorList extends RecyclerView.Adapter<DonorList.DonorViewHolder> {
 
     ArrayList<String> addres = new ArrayList<>();
     ArrayList<String> blood = new ArrayList<>();
-    public DonorList(ArrayList<String> names, ArrayList<String> age, ArrayList<String> sex, ArrayList<String> addres, ArrayList<String> blood) {
+    ArrayList<String>number = new ArrayList<>();
+    public DonorList(ArrayList<String> names, ArrayList<String> age, ArrayList<String> sex, ArrayList<String> addres, ArrayList<String> blood, ArrayList<String> number) {
         this.addres = addres;
         this.names = names;
         this.sex = sex;
         this.blood = blood;
         this.age = age;
+        this.number = number;
     }
 
     @NonNull
@@ -48,6 +51,7 @@ public class DonorList extends RecyclerView.Adapter<DonorList.DonorViewHolder> {
         holder.age.setText(age.get(position));
         holder.address.setText(addres.get(position));
         holder.name.setText(names.get(position));
+        holder.number.setText(number.get(position));
     }
 
 
@@ -58,7 +62,7 @@ public class DonorList extends RecyclerView.Adapter<DonorList.DonorViewHolder> {
 
     public static class DonorViewHolder extends RecyclerView.ViewHolder{
 
-        TextView age,sex,name,address,bloodType;
+        TextView age,sex,name,address,bloodType,number;
         public DonorViewHolder(@NonNull View itemView) {
             super(itemView);
             age = (TextView)itemView.findViewById(R.id.donorAge);
@@ -66,6 +70,7 @@ public class DonorList extends RecyclerView.Adapter<DonorList.DonorViewHolder> {
             name= (TextView)itemView.findViewById(R.id.donorName);
             address = (TextView)itemView.findViewById(R.id.donorAddress);
             bloodType = (TextView)itemView.findViewById(R.id.donorBlood);
+            number = (TextView)itemView.findViewById(R.id.donorNumber);
         }
     }
 }

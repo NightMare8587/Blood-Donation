@@ -39,6 +39,7 @@ public class BloodDonors extends AppCompatActivity {
 
     ArrayList<String> addres = new ArrayList<>();
     ArrayList<String> blood = new ArrayList<>();
+    ArrayList<String> number = new ArrayList<>();
     @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,8 @@ public class BloodDonors extends AppCompatActivity {
                         sex.add(post.child("Sex").getValue().toString());
                         addres.add(post.child("Address").getValue().toString());
                         blood.add(post.child("BloodType").getValue().toString());
-                        recyclerView.setAdapter(new DonorList(names,age,sex,addres,blood));
+                        number.add(post.child("Number").getValue().toString());
+                        recyclerView.setAdapter(new DonorList(names,age,sex,addres,blood,number));
                     }
                 }
             }
